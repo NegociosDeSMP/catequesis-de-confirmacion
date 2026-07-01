@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Catequesis de Confirmación Juvenil de la Parroquia Santuario San Martín de Porres. Reuniones todos los domingos a las 9:25 a. m. para jóvenes de 14 a 20 años. Inscripciones por WhatsApp." />
+  <meta name="theme-color" content="#ff7a18" />
+  <title>Catequesis de Confirmación Juvenil | PSSMP</title>
+  <style>
+    :root{
+      --bg:#fbf7f1;
+      --paper:#fffdf8;
+      --text:#191919;
+      --muted:#5a5147;
+      --orange:#ff7a18;
+      --orange-2:#ff9a3d;
+      --dark:#111111;
+      --line:rgba(25,25,25,.10);
+      --shadow:0 18px 40px rgba(0,0,0,.12);
+      --radius:24px;
+      --max:1200px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(0,0,0,.03) 0 1px, transparent 1px 100%),
+        radial-gradient(circle at 80% 10%, rgba(0,0,0,.025) 0 1px, transparent 1px 100%),
+        radial-gradient(circle at 40% 70%, rgba(0,0,0,.025) 0 1px, transparent 1px 100%),
+        linear-gradient(180deg, #fcf8f2 0%, #f7f0e6 100%);
+      background-size:22px 22px, 26px 26px, 28px 28px, auto;
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    button{font:inherit}
+
+    .corner-logo{
+      position:fixed;
+      top:14px;
+      z-index:1105;
+    }
+    .corner-left{left:14px}
+    .corner-right{right:14px}
+    .corner-logo img{
+      width:62px;
+      height:62px;
+      object-fit:contain;
+      background:#fff;
+      border:1px solid rgba(0,0,0,.08);
+      box-shadow:0 10px 20px rgba(0,0,0,.08);
+      border-radius:16px;
+      padding:5px;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(252,248,242,.92);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(0,0,0,.08);
+    }
+    .nav-wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:12px 18px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      align-items:center;
+    }
+    .nav-center{
+      text-align:center;
+      min-width:0;
+      padding:68px 14px 6px;
+      margin:0 auto;
+      max-width:900px;
+    }
+    .ribbon{
+      display:inline-block;
+      background:var(--orange);
+      color:#111;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      padding:8px 16px;
+      transform:skew(-10deg);
+      box-shadow:0 10px 18px rgba(255,122,24,.22);
+      margin-bottom:8px;
+    }
+    .ribbon span{display:inline-block;transform:skew(10deg)}
+    .title{
+      margin:0;
+      font-size:clamp(1rem, 2.2vw, 1.4rem);
+      font-weight:900;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+    }
+    .subtitle{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-weight:700;
+      font-size:.92rem;
+    }
+    .nav-links{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+      font-size:.95rem;
+      font-weight:800;
+      padding-bottom:6px;
+    }
+    .nav-links a{
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid transparent;
+    }
+    .nav-links a:hover{background:#fff;border-color:var(--line)}
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.50), rgba(255,255,255,.75)),
+        url('banner-parroquia.jpg') center/cover no-repeat;
+      border-bottom:6px solid var(--orange);
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,.70), rgba(255,255,255,.18) 56%, rgba(255,255,255,.0) 75%),
+        linear-gradient(180deg, rgba(255,255,255,.60), rgba(255,255,255,.36));
+      z-index:0;
+    }
+    .hero-inner{
+      position:relative;
+      z-index:1;
+      max-width:var(--max);
+      margin:0 auto;
+      min-height:86vh;
+      padding:34px 18px 48px;
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:24px;
+      align-items:center;
+    }
+    .poster{
+      background:rgba(255,253,248,.88);
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:34px;
+      box-shadow:var(--shadow);
+      padding:28px;
+      position:relative;
+      overflow:hidden;
+    }
+    .poster::before{
+      content:"";
+      position:absolute; inset:-40px -30px auto auto;
+      width:220px; height:220px;
+      background:radial-gradient(circle, rgba(255,122,24,.14) 0 35%, transparent 36% 100%);
+      transform:rotate(20deg);
+    }
+    .eyebrow{
+      display:inline-block;
+      background:var(--orange);
+      color:#111;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      padding:8px 14px;
+      transform:skew(-10deg);
+      margin-bottom:16px;
+      box-shadow:0 10px 18px rgba(255,122,24,.22);
+    }
+    .eyebrow span{display:inline-block;transform:skew(10deg)}
+    h1{
+      margin:0;
+      font-size:clamp(2.2rem, 5vw, 4.8rem);
+      line-height:.95;
+      letter-spacing:-.05em;
+      text-transform:uppercase;
+      font-weight:900;
+    }
+    .script{
+      margin:10px 0 0;
+      font-size:clamp(2.3rem, 5vw, 5.4rem);
+      font-weight:900;
+      font-style:italic;
+      color:#111;
+      text-shadow:0 8px 14px rgba(0,0,0,.18);
+      font-family:"Brush Script MT","Segoe Script",cursive;
+    }
+    .hero p{
+      margin:18px 0 0;
+      max-width:60ch;
+      color:#27221d;
+      font-size:1.06rem;
+      font-weight:700;
+    }
+    .date-badge{
+      display:inline-flex;
+      margin-top:18px;
+      font-size:clamp(1.5rem, 2.8vw, 2.3rem);
+      font-weight:900;
+      color:#111;
+      border:4px solid var(--dark);
+      background:#fff;
+      padding:10px 16px;
+      box-shadow:0 12px 0 rgba(255,122,24,.55);
+    }
+    .hero-points{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:10px;
+      margin-top:22px;
+    }
+    .point{
+      background:var(--paper);
+      border:1px solid rgba(0,0,0,.08);
+      border-left:8px solid var(--orange);
+      border-radius:18px;
+      padding:14px 14px;
+      box-shadow:0 8px 18px rgba(0,0,0,.06);
+    }
+    .point span{
+      display:block;
+      color:var(--muted);
+      font-size:.84rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+    .point strong{display:block;margin-top:4px;font-size:1rem}
+    .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:50px;
+      padding:0 18px;
+      border-radius:999px;
+      font-weight:900;
+      letter-spacing:.01em;
+      transition:.22s ease;
+      border:2px solid transparent;
+    }
+    .btn-primary{background:var(--orange);color:#111;box-shadow:0 12px 24px rgba(255,122,24,.24)}
+    .btn-primary:hover{transform:translateY(-2px)}
+    .btn-secondary{background:#fff;color:#111;border-color:#111}
+    .btn-secondary:hover{background:#111;color:#fff}
+
+    .hero-art{
+      position:relative;
+      min-height:620px;
+      display:grid;
+      place-items:center;
+    }
+    .hero-frame{
+      width:min(100%, 540px);
+      background:rgba(255,253,248,.88);
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:34px;
+      box-shadow:var(--shadow);
+      padding:18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-frame::after{
+      content:"";
+      position:absolute; inset:auto -35px -35px auto;
+      width:180px;height:180px;
+      background:radial-gradient(circle, rgba(255,154,61,.25) 0 38%, transparent 39% 100%);
+      transform:rotate(-18deg);
+    }
+    .hero-frame img{
+      width:100%;
+      height:560px;
+      object-fit:cover;
+      border-radius:24px;
+    }
+    .floating-note{
+      position:absolute;
+      left:-8px;
+      top:16px;
+      transform:rotate(-8deg);
+      background:#fff;
+      color:#111;
+      border:4px solid var(--orange);
+      font-weight:900;
+      padding:8px 12px;
+      box-shadow:0 12px 18px rgba(0,0,0,.15);
+      text-transform:uppercase;
+      letter-spacing:.06em;
+    }
+    .floating-note.right{
+      left:auto;
+      right:-8px;
+      top:80px;
+      transform:rotate(7deg);
+      background:var(--orange);
+      border-color:#111;
+    }
+
+    .section{
+      width:min(var(--max), calc(100% - 36px));
+      margin:0 auto;
+      padding:72px 0;
+    }
+    .section-head{margin-bottom:24px}
+    .section-head .tag{
+      display:inline-block;
+      background:var(--orange);
+      color:#111;
+      font-weight:900;
+      text-transform:uppercase;
+      padding:7px 12px;
+      transform:skew(-10deg);
+      margin-bottom:10px;
+      box-shadow:0 10px 18px rgba(255,122,24,.18);
+    }
+    .section-head .tag span{display:inline-block;transform:skew(10deg)}
+    .section-head h2{
+      margin:0;
+      font-size:clamp(1.7rem, 3vw, 2.4rem);
+      text-transform:uppercase;
+      letter-spacing:-.03em;
+      line-height:1.05;
+    }
+    .section-head p{margin:10px 0 0;color:var(--muted);max-width:70ch;font-weight:600}
+
+    .grid-3{display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:18px}
+    .card{
+      background:rgba(255,253,248,.92);
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:22px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;left:0;top:0;height:8px;width:100%;
+      background:linear-gradient(90deg, var(--orange), var(--orange-2));
+    }
+    .card h3{margin:4px 0 10px;font-size:1.14rem;text-transform:uppercase}
+    .card p{margin:0;color:var(--muted);font-weight:600}
+    .info-list{
+      display:grid;
+      gap:10px;
+      margin:14px 0 0;
+      padding:0;
+      list-style:none;
+    }
+    .info-list li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:12px 14px;
+      background:#fff;
+      border-radius:16px;
+      border:1px solid rgba(0,0,0,.08);
+      font-weight:700;
+    }
+    .info-list li::before{
+      content:"◆";
+      color:var(--orange);
+      font-size:.95rem;
+      line-height:1.2;
+      margin-top:.12rem;
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(12, 1fr);
+      gap:14px;
+    }
+    .gallery figure{
+      margin:0;
+      overflow:hidden;
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(0,0,0,.08);
+      position:relative;
+      background:#fff;
+      min-height:220px;
+    }
+    .gallery img{width:100%;height:100%;object-fit:cover}
+    .gallery figcaption{
+      position:absolute;
+      left:14px; bottom:14px;
+      background:rgba(255,255,255,.96);
+      border:2px solid #111;
+      padding:7px 12px;
+      border-radius:999px;
+      font-weight:900;
+      text-transform:uppercase;
+      font-size:.8rem;
+      letter-spacing:.05em;
+    }
+    .span-6{grid-column:span 6}
+    .span-4{grid-column:span 4}
+    .span-8{grid-column:span 8}
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns:1fr .95fr;
+      gap:18px;
+      align-items:start;
+    }
+    .contact-item{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:16px 18px;
+      background:rgba(255,253,248,.92);
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+    }
+    .contact-item strong{display:block;text-transform:uppercase}
+    .contact-item span{display:block;color:var(--muted);font-weight:600}
+    .socials{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:11px 14px;
+      border-radius:999px;
+      background:#fff;
+      border:2px solid #111;
+      font-weight:900;
+      box-shadow:0 10px 18px rgba(0,0,0,.08);
+    }
+    .chip:hover{background:#111;color:#fff}
+    .whatsapp-chip{
+      border-color:#25D366;
+      background:#25D366;
+      color:#fff;
+    }
+    .whatsapp-chip:hover{
+      background:#1ea952;
+      border-color:#1ea952;
+      color:#fff;
+    }
+    .inline-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px 14px;
+      border-radius:999px;
+      background:#111;
+      color:#fff !important;
+      font-weight:900;
+      border:2px solid #111;
+      box-shadow:0 10px 18px rgba(0,0,0,.08);
+      white-space:nowrap;
+    }
+    .inline-btn:hover{
+      background:var(--orange);
+      color:#111 !important;
+      border-color:var(--orange);
+    }
+    .map-wrap iframe{
+      width:100%;
+      height:360px;
+      border:0;
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      background:#fff;
+    }
+
+    .faq{display:grid;gap:12px}
+    .faq-item{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+    .faq-q{
+      width:100%;
+      text-align:left;
+      background:transparent;
+      border:none;
+      padding:18px 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-weight:900;
+      color:var(--text);
+      cursor:pointer;
+      text-transform:uppercase;
+    }
+    .faq-a{display:none;padding:0 18px 18px;color:var(--muted);font-weight:600}
+    .faq-item.open .faq-a{display:block}
+
+    .cta-band{
+      width:min(var(--max), calc(100% - 36px));
+      margin:0 auto 28px;
+      background:linear-gradient(90deg, var(--orange), var(--orange-2));
+      color:#111;
+      border-radius:28px;
+      border:4px solid #111;
+      box-shadow:0 16px 26px rgba(0,0,0,.12);
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      gap:16px;
+      align-items:center;
+      padding:18px 22px;
+      transform:rotate(-.4deg);
+    }
+    .cta-band strong{font-size:1.1rem;text-transform:uppercase}
+    .cta-band .phone{font-size:1.35rem;font-weight:900;text-align:right}
+    .cta-band .icon{font-size:2.2rem;text-align:center}
+    .whatsapp-inline{
+      background:#111 !important;
+      color:#fff !important;
+      border-color:#111 !important;
+    }
+
+    footer{
+      padding:26px 20px 48px;
+      text-align:center;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    .floating-whatsapp,
+    .back-top{
+      position:fixed;
+      bottom:18px;
+      z-index:1000;
+      width:56px;
+      height:56px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      box-shadow:0 16px 36px rgba(0,0,0,.18);
+      border:2px solid #111;
+    }
+    .floating-whatsapp{right:18px;background:#25D366;color:#fff}
+    .back-top{left:18px;background:#fff;color:#111}
+
+    @media (max-width:980px){
+      .nav-links{justify-content:center}
+      .hero-inner,.contact-grid,.grid-3{grid-template-columns:1fr}
+      .hero-art{min-height:auto}
+      .hero-frame img{height:420px}
+      .span-6,.span-4,.span-8{grid-column:span 12}
+      .cta-band{grid-template-columns:1fr;text-align:center}
+      .cta-band .phone{text-align:center}
+      .cta-band .icon{font-size:2rem}
+    }
+
+    @media (max-width:640px){
+      .section{padding:56px 0}
+      .hero-inner{padding:20px 14px 34px}
+      .poster{padding:20px;border-radius:28px}
+      .hero-frame{border-radius:28px}
+      .hero-frame img{height:310px}
+      .hero-points{grid-template-columns:1fr}
+      .btn{width:100%}
+      .cta-row{display:grid}
+      .floating-whatsapp,.back-top{bottom:14px}
+      .floating-whatsapp{right:14px}
+      .back-top{left:14px}
+      .corner-logo{top:10px}
+      .corner-left{left:10px}
+      .corner-right{right:10px}
+      .corner-logo img{width:50px;height:50px}
+      .nav-center{padding-top:58px}
+    }
+  </style>
+</head>
+<body>
+  <div class="corner-logo corner-left" aria-label="Logo parroquia">
+    <img src="logo-parroquia.png" alt="Logo de la Parroquia Santuario San Martín de Porres">
+  </div>
+
+  <div class="corner-logo corner-right" aria-label="Logo pastoral juvenil">
+    <img src="logo-pj.png" alt="Logo de Pastoral Juvenil">
+  </div>
+
+  <header class="topbar">
+    <div class="nav-wrap">
+      <div class="nav-center">
+        <div class="ribbon"><span>Convocatoria de jóvenes</span></div>
+        <p class="title">Catequesis de Confirmación Juvenil</p>
+        <p class="subtitle">Parroquia Santuario San Martín de Porres · Lima, Perú</p>
+      </div>
+
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#catequesis">Catequesis</a>
+        <a href="#galeria">Galería</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <div class="hero-inner">
+        <div class="poster">
+          <div class="eyebrow"><span>Jóvenes de 14 a 20 años</span></div>
+          <h1>Prepárate para la Confirmación</h1>
+          <div class="script">Con fe, alegría y comunidad</div>
+          <p>
+            Te esperamos en la Catequesis de Confirmación Juvenil de la Parroquia Santuario San Martín de Porres.
+            Todos los domingos, en un ambiente juvenil, dinámico y lleno de esperanza.
+          </p>
+          <div class="date-badge">Domingos · 9:25 a. m.</div>
+
+          <div class="hero-points" aria-label="Datos principales">
+            <div class="point"><span>Edad</span><strong>14 a 20 años</strong></div>
+            <div class="point"><span>Inscripción</span><strong><a class="inline-btn" href="https://wa.me/51921608881" target="_blank" rel="noopener">Inscríbete por WhatsApp</a></strong></div>
+            <div class="point"><span>Reunión</span><strong>Todos los domingos</strong></div>
+            <div class="point"><span>Lugar</span><strong>Juan XXIII 309, Lima</strong></div>
+          </div>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://wa.me/51921608881" target="_blank" rel="noopener">Inscribirme por WhatsApp</a>
+            <a class="btn btn-secondary" href="#galeria">Ver fotos</a>
+          </div>
+        </div>
+
+        <div class="hero-art">
+          <div class="floating-note">Convivencia</div>
+          <div class="floating-note right">Servicio juvenil</div>
+          <div class="hero-frame">
+            <img src="banner-parroquia.jpg" alt="Fotografía amplia de la Parroquia Santuario San Martín de Porres">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="nosotros" class="section reveal">
+      <div class="section-head">
+        <div class="tag"><span>Sobre nosotros</span></div>
+        <h2>Una comunidad para crecer en la fe</h2>
+        <p>
+          Acompañamos a los jóvenes en un proceso de formación cristiana que une oración, amistad, aprendizaje y participación activa en la parroquia.
+        </p>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Formación bíblica</h3>
+          <p>Encuentros centrados en la Palabra de Dios, la vida de Jesús y el sentido del Sacramento de la Confirmación.</p>
+        </article>
+        <article class="card">
+          <h3>Ambiente juvenil</h3>
+          <p>Dinámicas, convivencias y actividades que hacen de la catequesis un espacio cercano, alegre y participativo.</p>
+        </article>
+        <article class="card">
+          <h3>Vida parroquial</h3>
+          <p>Buscamos formar jóvenes comprometidos con la Iglesia, el servicio y la comunidad.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="catequesis" class="section reveal">
+      <div class="section-head">
+        <div class="tag"><span>Qué incluye</span></div>
+        <h2>La catequesis y su preparación</h2>
+        <p>Una ruta de crecimiento integral para que cada joven viva su fe con mayor profundidad y compromiso.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="card">
+          <h3>Experiencias y temas</h3>
+          <ul class="info-list">
+            <li>Formación bíblica y doctrina católica</li>
+            <li>Oración, reflexión y vida sacramental</li>
+            <li>Dinámicas juveniles y actividades de integración</li>
+            <li>Convivencias, retiros y celebraciones especiales</li>
+            <li>Servicio y compromiso con la comunidad</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Datos importantes</h3>
+          <ul class="info-list">
+            <li><strong>Día:</strong> Todos los domingos</li>
+            <li><strong>Hora:</strong> 9:25 a. m.</li>
+            <li><strong>Edad:</strong> 14 a 20 años</li>
+            <li><strong>Dirección:</strong> Juan XXIII 309, Lima 15102</li>
+            <li><strong>WhatsApp:</strong> <a class="inline-btn" href="https://wa.me/51921608881" target="_blank" rel="noopener">Abrir WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria" class="section reveal">
+      <div class="section-head">
+        <div class="tag"><span>Galería</span></div>
+        <h2>Momentos que nos representan</h2>
+        <p>Una galería con estilo de afiche, para mostrar tus eventos juveniles y la parroquia con una presencia visual más fuerte.</p>
+      </div>
+      <div class="gallery">
+        <figure class="span-8">
+          <img src="evento-juvenil-1.jpg" alt="Encuentro juvenil de la catequesis">
+          <figcaption>Encuentro juvenil</figcaption>
+        </figure>
+        <figure class="span-4">
+          <img src="evento-juvenil-2.jpg" alt="Actividad de integración de jóvenes">
+          <figcaption>Integración</figcaption>
+        </figure>
+        <figure class="span-4">
+          <img src="parroquia-exterior.jpg" alt="Fachada exterior de la parroquia">
+          <figcaption>Parroquia</figcaption>
+        </figure>
+        <figure class="span-4">
+          <img src="parroquia-interior.jpg" alt="Interior del templo parroquial">
+          <figcaption>Templo</figcaption>
+        </figure>
+        <figure class="span-4">
+          <img src="evento-juvenil-3.jpg" alt="Presentación juvenil de la catequesis">
+          <figcaption>Celebración</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="cta-band reveal" aria-label="Contacto destacado">
+      <strong>Comunícate con nosotros</strong>
+      <div class="icon">☎</div>
+      <div class="phone"><a class="inline-btn whatsapp-inline" href="https://wa.me/51921608881" target="_blank" rel="noopener">WhatsApp · 921 608 881</a></div>
+    </section>
+
+    <section id="faq" class="section reveal">
+      <div class="section-head">
+        <div class="tag"><span>Preguntas frecuentes</span></div>
+        <h2>Respuestas rápidas</h2>
+        <p>Información clara para jóvenes y padres de familia interesados en unirse a la catequesis.</p>
+      </div>
+      <div class="faq">
+        <div class="faq-item">
+          <button class="faq-q" type="button">¿Qué edades pueden participar?<span>+</span></button>
+          <div class="faq-a">La catequesis está dirigida a jóvenes de 14 a 20 años.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">¿Cuándo son las reuniones?<span>+</span></button>
+          <div class="faq-a">Todos los domingos a partir de las 9:25 a. m.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">¿Cómo me inscribo?<span>+</span></button>
+          <div class="faq-a">Puedes escribir por WhatsApp al +51 921 608 881 para recibir orientación e inscripción.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="section reveal">
+      <div class="section-head">
+        <div class="tag"><span>Contacto</span></div>
+        <h2>Ubicación y redes sociales</h2>
+        <p>Encuéntranos en la parroquia, revisa nuestras redes y ubícate fácilmente en el mapa.</p>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <div class="contact-item">
+            <div>📍</div>
+            <div>
+              <strong>Dirección</strong>
+              <span>Juan XXIII 309, Lima 15102, XX83+WG Lima</span>
+            </div>
+          </div>
+          <div class="contact-item" style="margin-top:12px;">
+            <div>📲</div>
+            <div>
+              <strong>WhatsApp de inscripción</strong>
+              <span><a class="inline-btn" href="https://wa.me/51921608881" target="_blank" rel="noopener">Escribir por WhatsApp</a></span>
+            </div>
+          </div>
+          <div class="socials">
+            <a class="chip" href="https://www.instagram.com/ccj.pssmp?igsh=MXVud204OWdicWs5ag==" target="_blank" rel="noopener">Instagram</a>
+            <a class="chip" href="https://www.facebook.com/share/1dV4Y68PWg/" target="_blank" rel="noopener">Facebook</a>
+            <a class="chip whatsapp-chip" href="https://wa.me/51921608881" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="map-wrap">
+          <iframe
+            title="Mapa de la Parroquia Santuario San Martín de Porres"
+            src="https://www.google.com/maps?q=Juan%20XXIII%20309,%20Lima%2015102&output=embed"
+            loading="lazy"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>Catequesis de Confirmación Juvenil · Parroquia Santuario San Martín de Porres</strong><br>
+    Domingos a las 9:25 a. m. · Jóvenes de 14 a 20 años · Lima, Perú
+  </footer>
+
+  <a class="back-top" href="#inicio" aria-label="Volver arriba">↑</a>
+  <a class="floating-whatsapp" href="https://wa.me/51921608881" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">⌁</a>
+
+  <script>
+    document.querySelectorAll('.faq-item').forEach((item) => {
+      const btn = item.querySelector('.faq-q');
+      btn.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach((el) => el.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.transition = 'opacity .8s ease, transform .8s ease';
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealEls.forEach((el) => {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(22px)';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
